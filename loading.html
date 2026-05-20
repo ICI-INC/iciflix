@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICIFLIX</title>
+<style>
+  :root {
+    --bg: #0d0d0f;
+    --accent: #E50914;
+    --text: #e8eaed;
+    --text-dim: #9aa0a6;
+  }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at center, #1a0a0a 0%, var(--bg) 70%);
+  }
+
+  .splash {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    animation: fadeIn 0.5s ease;
+  }
+
+  .logo {
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-shadow: 0 0 30px rgba(229, 9, 20, 0.5);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  .loading-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  .loading-text {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-dim);
+    letter-spacing: 2px;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.02); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  .splash.fade-out {
+    animation: fadeOut 0.5s ease forwards;
+  }
+</style>
+</head>
+<body>
+
+  <div class="splash" id="splash">
+    <div class="logo">ICI</div>
+    <div class="loading-wrap">
+      <div class="spinner"></div>
+      <div class="loading-text">Logando...</div>
+    </div>
+  </div>
+
+<script>
+  // Troca esse link pelo da sua outra tela
+  const LINK_DA_OUTRA_TELA = 'https://lights-images-genealogy-bye.trycloudflare.com/ici/storage/iciflix/';
+  
+  // Tempo de loading em milissegundos
+  const TEMPO_LOADING = 3000; // 3 segundos
+
+  setTimeout(() => {
+    const splash = document.getElementById('splash');
+    splash.classList.add('fade-out');
+    
+    setTimeout(() => {
+      window.location.href = LINK_DA_OUTRA_TELA;
+    }, 500); // espera o fade acabar
+    
+  }, TEMPO_LOADING);
+</script>
+
+</body>
+</html>
+
